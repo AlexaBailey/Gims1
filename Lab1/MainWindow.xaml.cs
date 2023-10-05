@@ -225,9 +225,13 @@ namespace Lab1
                 + _mask[2, 0] * bytesArr[6] + _mask[2, 1] * bytesArr[7] + _mask[2, 2] * bytesArr[8]) / size);
             return res;
         }
+        
         private void openImage(object sender, RoutedEventArgs e)
         {
-            
+            OpenImageWindow openImageWindow = new OpenImageWindow();
+            openImageWindow.ShowDialog();
+
+
         }
 
         private void ConvertImage_Click(object sender, RoutedEventArgs e)
@@ -247,20 +251,7 @@ namespace Lab1
                 
             }
         }
-        private void FiltImage(ref Bitmap bitmap)
-        {
-
-
-            /*            for (int i = 0; i < bitmap.Height - 1; i++)
-                        {
-                            for (int j = 0; j < bitmap.Width - 1; j++)
-                            {
-
-                            }
-                        }
-            */
-
-        }
+        
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
