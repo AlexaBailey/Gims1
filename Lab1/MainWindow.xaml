@@ -14,13 +14,17 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
         <Button x:Name="OpenImage" Click="openImage" Grid.Column="0" Grid.Row="0" Content="Open Image" Margin="10,0,5,10"></Button>
         <Button x:Name="ConvertImage" Click="ConvertImage_Click" Grid.Column="2" Grid.Row="0" Content="Convert Image" Margin="5,0,5,10"></Button>
         <Button x:Name="Edit" Click="Edit_Click" Grid.Column="1" Grid.Row="0" Content="Edit Mask" Margin="5,0,5,10"></Button>
-        <TextBox x:Name="RandomBox" Grid.Row="0" Grid.Column="3" Margin="5,0,10,10"></TextBox>
-
+        <Button x:Name="GetBorder" Click="GetBorder_OnClick" Grid.Column="3" Grid.Row="0" Content="GetBorder" Margin="5,0,5,10"></Button>
+        <TextBox x:Name="RandomBox" Grid.Row="0" Grid.Column="4" Margin="5,0,10,10"></TextBox>
+        <TextBox x:Name="EBox" Grid.Row="0" Grid.Column="5"></TextBox>
+        
 
     </Grid>
 </Window>

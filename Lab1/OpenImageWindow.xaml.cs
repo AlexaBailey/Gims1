@@ -22,7 +22,7 @@ public partial class OpenImageWindow : Window
     }
     public class MyClass
     {
-        public Int16 _type;//
+        public ushort _type;//
         public int _colorsUsed;//
         public int _type2;//
         public Int16 _sizeOfHeader = 21;
@@ -38,7 +38,7 @@ public partial class OpenImageWindow : Window
         MyClass header = new MyClass();
         using (BinaryReader reader = new BinaryReader(stream))
         {
-            header._type = reader.ReadInt16();
+            header._type = reader.ReadUInt16();
             reader.ReadInt32();
             reader.ReadInt16();
             reader.ReadInt16();
@@ -58,7 +58,7 @@ public partial class OpenImageWindow : Window
             reader.ReadInt32();
         }
         header._sizeOf = header._width * header._height;
-        HeaderBox.Text = $"{header._type}\n{header._type2}\n{header._colorsUsed}\n{header._sizeOfHeader}\n{header._sizeOfRast}\n" +
+        HeaderBox.Text = $"{header._type.ToString("x4")}\n{header._type2.ToString()}\n{header._colorsUsed}\n{header._sizeOfHeader}\n{header._sizeOfRast}\n" +
                              $"{header._width}\n{header._sizeOf}";
     }
 }

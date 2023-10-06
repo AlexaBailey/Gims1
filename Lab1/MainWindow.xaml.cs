@@ -259,5 +259,57 @@ namespace Lab1
             window1.ShowDialog();
 
         }
+
+        private void GetBorder_OnClick(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                Uri fileUri = new Uri(openFileDialog.FileName);
+                Bitmap bitmap = new Bitmap(openFileDialog.FileName);
+                double[,] brightness = new double[bitmap.Width, bitmap.Height];
+                for (int i = 0; i < bitmap.Width; i++)
+                {
+                    for (int j = 0; j < bitmap.Height; j++)
+                    {
+                        System.Drawing.Color color = bitmap.GetPixel(i, j);
+                        brightness[i, j] = (0.3 * color.R + 0.6 * color.G + 0.1 * color.B);
+                        
+                    }
+                }
+
+                double[,] contrasts = new double[bitmap.Width, bitmap.Height];
+                for (int i = 1; i < bitmap.Width-1; i++)
+                {
+                    for (int j = 1; j < bitmap.Height-1; j++)
+                    {
+                        double x = (brightness[i + 1, j - 1] + 2 * brightness[i + 1, j] + brightness[i + 1, j + 1]) -
+                                   (brightness[i - 1, j - 1] + 2 * brightness[i - 1, j] + brightness[i - 1, j + 1]);
+                        double y = (brightness[i - 1, j - 1] + 2 * brightness[i, j - 1] + brightness[i + 1, j - 1]) -
+                                   (brightness[i - 1, j + 1] + 2 * brightness[i, j + 1] + brightness[i + 1, j + 1]);
+                        contrasts[i, j] = Math.Sqrt(x * x + y * y);
+
+                    }
+                }
+
+                int E = Convert.ToInt32(EBox.Text);
+                for (int i = 0; i < bitmap.Width; i++)
+                {
+                    for (int j = 0; j < bitmap.Height; j++)
+                    {
+                        if (contrasts[i, j] > E)
+                        {
+                            bitmap.SetPixel(i,j,System.Drawing.Color.FromArgb(1,0,0,0));
+                        }
+                        else
+                        {
+                            bitmap.SetPixel(i,j,System.Drawing.Color.FromArgb(1,255,255,255));
+                        }
+                    }
+                }
+                bitmap.Save("ContrastResult.bmp");
+
+            }
+        }
     }
-    }
+}
